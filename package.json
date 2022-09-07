@@ -1,0 +1,21 @@
+{
+  "name": "my-app",
+  "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "generate": "nuxt generate",
+    "start": "nuxt start"
+  },
+  "dependencies": {
+    "@vuelidate/core": "^2.0.0-alpha.44",
+    "@vuelidate/validators": "^2.0.0-alpha.31",
+    "axios": "^0.27.2",
+    "nuxt": "^2.15.8",
+    "pinia": "^2.0.0-rc.10",
+    "vee-validate": "^3.4.14",
+    "vue-cropper": "^1.0.5"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-typescript": "^5.0.8"
+  }
+}
