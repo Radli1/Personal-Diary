@@ -22,7 +22,7 @@
             <li v-for="item in searchM" :key="item"><a href="https://jsonplaceholder.typicode.com/posts/body" class="list-group-item">{{item.title}}</a></li>
         </ol>
         <ol class="list-group">
-            <li v-for="item in filterM" :key="item"><a href="https://jsonplaceholder.typicode.com/posts/body" class="list-group-item">{{item.title}}</a></li>
+            <li v-for="item in filterM" :key="item"><a href="/DiaryPage" class="list-group-item">{{item.title}}</a></li>
         </ol> 
     </div>
     <div id="pagination">

@@ -7,6 +7,13 @@
     "_name": "_708f80be"
   },
   {
+    "name": "DiaryPage",
+    "path": "/DiaryPage",
+    "component": "/home/ud73/WebstormProjects/TrueMachine/Personal Diary/pages/DiaryPage.vue",
+    "chunkName": "pages/DiaryPage",
+    "_name": "_53cb007c"
+  },
+  {
     "name": "NewArticle",
     "path": "/NewArticle",
     "component": "/home/ud73/WebstormProjects/TrueMachine/Personal Diary/pages/NewArticle.vue",

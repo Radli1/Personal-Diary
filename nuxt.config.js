@@ -3,9 +3,9 @@ export default {
 
     axios: {} ,
 
-    plugins:[ ],
+    plugins:[ "~/plugins/vee-validate.js"],
 
     components: true,
 
-    build: { }
+    build: {transpile: ["vee-validate/dist/rules"] }
     }

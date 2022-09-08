@@ -1,12 +1,6 @@
 <template>
-  <!-- <div class="addArticle">
-      <Form v-slot="{errors}">
-      <Field name="field" :rules="isRequired" />
-      <span> {{ errors.field }} </span>
-      </Form>
-  </div> -->
-  <ValidationObserver v-slot="{invalid}">
-    <form @submit.prevent="omSubmit">
+  <ValidationObserver>
+    <form @submit.prevent="onSubmit">
       <ValidationProvider v-slot="title">
         <input v-model="title" type="text" placeholder="Title">
       </ValidationProvider>
@@ -17,21 +11,24 @@
         <input v-model="date" type="date" placeholder="Date">
       </ValidationProvider>
     
-    <button type="submit" :disabled="invalid">Submit</button>
+    <button type="submit" >Submit</button>
     </form>
   </ValidationObserver>
+  
 </template>
 
 <script>
 import { ValidationProvider, ValidationObserver } from 'vee-validate';
 export default {
-    name: 'NewArticle',
     components: {
-      ValidationProvider,
-      ValidationObserver
+      ValidationObserver,
+      ValidationProvider
     },
+
     methods: {
-      
+      onsubmit (){
+        alert('Form has been submitted')
+      }
     }
 }
 </script>
