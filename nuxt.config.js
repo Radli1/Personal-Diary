@@ -3,9 +3,15 @@ export default {
 
     axios: {} ,
 
-    plugins:[ "~/plugins/vee-validate.js"],
+    plugins:[ 
+        {src: "~/plugins/vee-validate.js"},
+        { src: '~/plugins/vue-cropper', ssr: false }
+    ],
 
     components: true,
 
-    build: {transpile: ["vee-validate/dist/rules"] }
+    build: {
+        transpile: ["vee-validate/dist/rules"], 
+        vendor: ['vue-cropper']
     }
+}

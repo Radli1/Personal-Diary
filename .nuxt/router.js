@@ -5,6 +5,7 @@ import { interopDefault } from './utils'
 import scrollBehavior from './router.scrollBehavior.js'
 
 const _708f80be = () => interopDefault(import('../pages/ArticleList.vue' /* webpackChunkName: "pages/ArticleList" */))
+const _2493c9d2 = () => interopDefault(import('../pages/Cropper.vue' /* webpackChunkName: "pages/Cropper" */))
 const _53cb007c = () => interopDefault(import('../pages/DiaryPage.vue' /* webpackChunkName: "pages/DiaryPage" */))
 const _0d97171c = () => interopDefault(import('../pages/NewArticle.vue' /* webpackChunkName: "pages/NewArticle" */))
 const _71445500 = () => interopDefault(import('../pages/Pagination.vue' /* webpackChunkName: "pages/Pagination" */))
@@ -26,6 +27,10 @@ export const routerOptions = {
     path: "/ArticleList",
     component: _708f80be,
     name: "ArticleList"
+  }, {
+    path: "/Cropper",
+    component: _2493c9d2,
+    name: "Cropper"
   }, {
     path: "/DiaryPage",
     component: _53cb007c,

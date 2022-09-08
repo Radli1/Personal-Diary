@@ -7,6 +7,13 @@
     "_name": "_708f80be"
   },
   {
+    "name": "Cropper",
+    "path": "/Cropper",
+    "component": "/home/ud73/WebstormProjects/TrueMachine/Personal Diary/pages/Cropper.vue",
+    "chunkName": "pages/Cropper",
+    "_name": "_2493c9d2"
+  },
+  {
     "name": "DiaryPage",
     "path": "/DiaryPage",
     "component": "/home/ud73/WebstormProjects/TrueMachine/Personal Diary/pages/DiaryPage.vue",
