@@ -1,39 +1,48 @@
 <template>
-  <ValidationObserver>
-    <form @submit.prevent="onSubmit">
-      <ValidationProvider v-slot="title">
-        <input v-model="title" type="text" placeholder="Title">
-      </ValidationProvider>
-      <ValidationProvider v-slot="text">
-        <input v-model="text" type="text" placeholder="Text">
-      </ValidationProvider>
-      <ValidationProvider v-slot="date">
-        <input v-model="date" type="date" placeholder="Date">
-      </ValidationProvider>
-    
-    <button type="submit" >Submit</button>
-    </form>
-  </ValidationObserver>
-  
+  <div>
+    <section>
+    <ValidationProvider rules="required|alpha" v-slot="{errors}">
+      <input type="text" v-model="value">
+      <span>{{ errors[0]}}</span>
+    </ValidationProvider>
+    <!-- <input v-model="value" placeholder="Type something" />
+    <span>{{ errorMessage }}</span>
+    <button type="submit" @click = "onsubmit">Submit</button> -->
+  </section>  
+  </div>
 </template>
 
 <script>
-import { ValidationProvider, ValidationObserver } from 'vee-validate';
+import { ValidationProvider } from 'vee-validate';
 export default {
-    components: {
-      ValidationObserver,
-      ValidationProvider
-    },
-
-    methods: {
+      components: {
+        ValidationProvider
+      },
+      data(){
+        return{
+          value:"",
+          ///errorMessage:''
+        }
+      },
+      methods: {
       onsubmit (){
         alert('Form has been submitted')
-      }
-    }
-}
-</script>
+        },
+      },
+      // computed:{
+      //   defineRule (value) {
+      //   if (!value) {
+      //     return 'this field is required';
+      //   }
+      //   if (value.length < 8) {
+      //     return 'this field must contain at least 8 characters';
+      //   }
+      //   return true;
+      //   }
+    //}
+  };    
 
+</script>
 <style>
 
 </style>
-

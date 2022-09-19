@@ -1,6 +1,6 @@
 <template>
 <div>
-    <div id="search-component">
+    <div id="search-component">Search section 
         <input 
         type="text"
         v-model="search"
@@ -9,13 +9,23 @@
             <option value="0">Все категории</option>
             <option v-for="item in items" :key="item.title" :value="item.title">{{ item.title }}</option>
         </select>
+    </div>
+    
+    <div id="sortsection">Sort section
+        <button v-on:click="sortedList='case'">
+            <span v-if="UpCase">от А до Я</span>
+            <span v-else>от Я до А</span>
+        </button>
+        <button v-on:click="sortedList='date'">
+            <span v-if="UpDate"> Дата по возрастанию </span>
+            <span v-else> Дата по убыванию </span>
+        </button>
+    </div>
+    <div v-for = "item in sortedList" :key="item">{{items.title}}</div>
+    <div>
         <button id="link">
             <router-link to="/NewArticle"> Добавить запись</router-link>
         </button>
-    </div>
-    <div id="sortbydate">
-        <button>DATE UP</button>
-        <button>DATE DOWN</button>
     </div>
     <div>
         <ol class="list-group">
@@ -44,19 +54,30 @@ export default {
             items:[],
             loaded: true,
             search:'',
-            filter:''    
+            filter:'',
+           
+            UpCase: true,
+            UpDate: true    
         };
     },
     methods: {
         onPageChange(page) {
             this.currentPage = page;
         },
-        sortByDate () {
-            return new this.items.id.valueOf() - new this.items.id.valueOf();
+        sortParam () {
+            this.UpCase = !this.UpCase
         }
-
     },
     computed:{
+        sortedList() {
+            const order = this.UpCase ? 1 : -1;
+            console.log(order);
+            switch (this.sortParam) {
+                case 'case': return this.items.sort(sortByCase);
+                case 'date': return this.items.sort(sortByDate);
+                default: return this.items;
+            }
+        },
         searchM () {
             return this.items.filter(item => {
                 return item.title.includes(this.search)
@@ -66,9 +87,8 @@ export default {
             return this.items.filter (item => { 
                 return item.title.includes(this.filter)
             })
-        },
-        
-    },
+        }
+    },       
     async created () {
         try {
             const results = await axios.get(`https://jsonplaceholder.typicode.com/posts`);
@@ -78,6 +98,9 @@ export default {
         }
     },
 };
+const sortByCase = function (d1, d2) { return (d1.title.toLowerCase() > d2.title.toLowerCase()) ? 1 : -1;}
+const sortByDate = function (d1, d2) { return (d1.id > d2.id) ? 1 : -1;}
+
 </script>
 
 <style>

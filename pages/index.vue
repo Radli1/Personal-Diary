@@ -14,7 +14,5 @@
 </script>
 
 <style>
-  .container {
-    color: red;
-  }
+  
 </style>
