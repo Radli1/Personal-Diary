@@ -21,7 +21,7 @@
 
     <div id="sortsection">
       Sort section
-      <button @click="sortedList = 'case'">
+      <button @click="sortParam">
         <span v-if="UpCase">от А до Я</span>
         <span v-else>от Я до А</span>
       </button>
@@ -123,8 +123,7 @@ export default {
   created() {
     axios({ method: 'get', url: 'https://jsonplaceholder.typicode.com/posts' })
       .then((response) => {
-        console.log({ response });
-        // this.items = response.data;
+        this.items = response.data;
       })
       .catch((error) => {
         console.log(error);
