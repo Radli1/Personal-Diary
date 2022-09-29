@@ -1,0 +1,10 @@
+{
+    "layouts/**/*.{vue,js}":[
+        "eslint --fix",
+        "prettier --write"
+    ],
+    "pages/**/*.{vue,js}":[
+        "eslint --fix",
+        "prettier --write"
+    ]
+}

@@ -6,6 +6,7 @@ import scrollBehavior from './router.scrollBehavior.js'
 
 const _708f80be = () => interopDefault(import('../pages/ArticleList.vue' /* webpackChunkName: "pages/ArticleList" */))
 const _53cb007c = () => interopDefault(import('../pages/DiaryPage.vue' /* webpackChunkName: "pages/DiaryPage" */))
+const _bbf39e94 = () => interopDefault(import('../pages/ModalComponent.vue' /* webpackChunkName: "pages/ModalComponent" */))
 const _0d97171c = () => interopDefault(import('../pages/NewArticle.vue' /* webpackChunkName: "pages/NewArticle" */))
 const _71445500 = () => interopDefault(import('../pages/Pagination.vue' /* webpackChunkName: "pages/Pagination" */))
 const _4919a38e = () => interopDefault(import('../pages/Search.vue' /* webpackChunkName: "pages/Search" */))
@@ -30,6 +31,10 @@ export const routerOptions = {
     path: "/DiaryPage",
     component: _53cb007c,
     name: "DiaryPage"
+  }, {
+    path: "/ModalComponent",
+    component: _bbf39e94,
+    name: "ModalComponent"
   }, {
     path: "/NewArticle",
     component: _0d97171c,

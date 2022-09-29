@@ -1,48 +1,111 @@
 <template>
   <div>
-    <section>
-    <ValidationProvider rules="required|alpha" v-slot="{errors}">
-      <input type="text" v-model="value">
-      <span>{{ errors[0]}}</span>
-    </ValidationProvider>
-    <!-- <input v-model="value" placeholder="Type something" />
-    <span>{{ errorMessage }}</span>
-    <button type="submit" @click = "onsubmit">Submit</button> -->
-  </section>  
+    <ol>
+      <ValidationProvider
+        v-slot="{ errors }"
+        rules="required|alpha_dash"
+      >
+        <input
+          v-model="login"
+          type="text"
+          placeholder="login"
+        />
+        <span>{{ errors[0] }}</span>
+      </ValidationProvider>
+    </ol>
+    <ol>
+      <ValidationProvider
+        v-slot="{ errors }"
+        rules="required|alpha_dash"
+      >
+        <input
+          v-model="password"
+          type="text"
+          placeholder="password"
+        />
+        <span>{{ errors[0] }}</span>
+      </ValidationProvider>
+    </ol>
+    <ol>
+      <ValidationProvider
+        v-slot="{ errors }"
+        rules="required|alpha_dash"
+      >
+        <input
+          v-model="title"
+          type="text"
+          placeholder="article text"
+        />
+        <span>{{ errors[0] }}</span>
+      </ValidationProvider>
+    </ol>
+    <h3>ЗАГРУЗКА ФОТО</h3>
+    <div>
+      <img class="uploading-image" />
+      <input
+        type="file"
+        accept="image/jpeg"
+        @change="uploadImage"
+      />
+      <cropper
+        class="cropper"
+        :src="previewImage"
+        @change="change"
+      ></cropper>
+    </div>
+    <button
+      type="submit"
+      @click="onsubmit"
+    >
+      Submit
+    </button>
   </div>
 </template>
 
 <script>
 import { ValidationProvider } from 'vee-validate';
+import { Cropper } from 'vue-advanced-cropper';
+import 'vue-advanced-cropper/dist/style.css';
+import axios from 'axios';
+
 export default {
-      components: {
-        ValidationProvider
-      },
-      data(){
-        return{
-          value:"",
-          ///errorMessage:''
-        }
-      },
-      methods: {
-      onsubmit (){
-        alert('Form has been submitted')
-        },
-      },
-      // computed:{
-      //   defineRule (value) {
-      //   if (!value) {
-      //     return 'this field is required';
-      //   }
-      //   if (value.length < 8) {
-      //     return 'this field must contain at least 8 characters';
-      //   }
-      //   return true;
-      //   }
-    //}
-  };    
-
+  components: {
+    ValidationProvider,
+    Cropper,
+  },
+  data() {
+    return {
+      login: '',
+      title: '',
+      password: '',
+      previewImage: null,
+      photo: [],
+      /// /img: '/src/img/img.jpg'
+    };
+  },
+  methods: {
+    uploadImage(e) {
+      const image = e.target.files[0];
+      const reader = new FileReader();
+      reader.readAsDataURL(image);
+      // reader.onload = e =>{
+      //     this.previewImage = e.target.result;
+      //     console.log(this.previewImage);
+      // };
+    },
+    onsubmit() {
+      alert('Form has been submitted');
+      axios.post('https://jsonplaceholder.typicode.com/posts', {
+        login: this.login,
+        password: this.password,
+        title: this.title,
+      });
+    },
+    change({ coordinates, canvas }) {
+      console.log(coordinates, canvas);
+    },
+  },
+};
 </script>
-<style>
 
-</style>
+<style></style>
