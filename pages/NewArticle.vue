@@ -88,10 +88,10 @@ export default {
       const image = e.target.files[0];
       const reader = new FileReader();
       reader.readAsDataURL(image);
-      // reader.onload = e =>{
-      //     this.previewImage = e.target.result;
-      //     console.log(this.previewImage);
-      // };
+      reader.onload = (Event) => {
+        this.previewImage = Event.target.result;
+        console.log(this.previewImage);
+      };
     },
     onsubmit() {
       alert('Form has been submitted');
