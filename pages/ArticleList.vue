@@ -21,21 +21,22 @@
 
     <div id="sortsection">
       Sort section
-      <button @click="sortParam">
+      <button @click="sortDate">
         <span v-if="UpCase">от А до Я</span>
         <span v-else>от Я до А</span>
       </button>
-      <button @click="sortedList = 'date'">
+      <button @click="type = 'date'">
         <span v-if="UpDate"> Дата по возрастанию </span>
         <span v-else> Дата по убыванию </span>
       </button>
     </div>
     <div
-      v-for="item in sortedList"
-      :key="item"
+      v-for="item in sortedList1"
+      :key="item.id"
     >
-      {{ items.title }}
+      {{ item.title }}
     </div>
+
     <div>
       <button id="link">
         <router-link to="/NewArticle"> Добавить запись</router-link>
@@ -95,24 +96,36 @@ export default {
       filter: '',
       UpCase: true,
       UpDate: true,
+      type: '',
     };
   },
   computed: {
-    sortedList() {
-      const order = this.UpCase ? 1 : -1;
-      console.log(order);
-      const itemsCopy = [...this.items];
-      switch (this.sortParam) {
-        case 'case':
-          return itemsCopy.sort((d1, d2) =>
-            d1.title.toLowerCase() > d2.title.toLowerCase() ? 1 : -1
-          );
-        case 'date':
-          return itemsCopy.sort((d1, d2) => (d1.id > d2.id ? 1 : -1));
-        default:
-          return itemsCopy;
-      }
-    },
+    // sortedList1() {
+    //   const itemsCopy = [...this.items];
+    //   let sortedItems;
+    //   this.type = this.sortParam
+
+    //   switch (this.type) {
+    //     case 'case':
+    //       console.log('в кейсе')
+
+    //       sortedItems = itemsCopy.sort((a, b) =>
+    //         a.title.toLowerCase() > b.title.toLowerCase() ? 1 : -1);
+
+    //       sortedItems = itemsCopy.sort ((a, b) =>
+    //         a.title.toLowerCase() < b.title.toLowerCase() ? 1 : -1);
+
+    //       break;
+    //     case 'date':
+    //     console.log('в дате')
+    //     sortedItems = itemsCopy.sort((d1, d2) => (d1.id > d2.id ? 1 : -1));
+    //       break;
+    //     default:
+    //       console.log('default')
+    //       sortedItems = itemsCopy;
+    //   }
+    //   return itemsCopy;
+    // },
     searchM() {
       return this.items.filter((item) => item.title.includes(this.search));
     },
@@ -133,9 +146,17 @@ export default {
     onPageChange(page) {
       this.currentPage = page;
     },
-    sortParam() {
+    sortParamCase() {
       this.UpCase = !this.UpCase;
-      this.UpDate = !this.UpDate;
+    },
+
+    sortDate() {
+      this.items.sort((a, b) => {
+        if (this.UpCase) {
+          return b.title - a.title;
+        }
+        return a.title - b.title;
+      });
     },
   },
 };
