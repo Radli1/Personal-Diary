@@ -4,7 +4,9 @@
     <h3>TEXT</h3>
     <div class="title">{{ item }}</div>
     <h3>PHOTO</h3>
-    <div>{{ photo }}</div>
+    <div>
+      <img :src="photo" />
+    </div>
 
     <h3>COMMENTS</h3>
     <button @click="visible = !visible">
@@ -58,10 +60,10 @@
       </button>
       <div v-show="show">
         <div
-          v-for="item in comments"
-          :key="item"
+          v-for="comment in comments"
+          :key="comment.id"
         >
-          {{ comments }}
+          {{ comment }}
         </div>
       </div>
     </div>
@@ -79,13 +81,14 @@ import axios from 'axios';
 export default {
   data() {
     return {
-      photo: [],
+      photo: '',
       loading: false,
       data: {},
       item: '',
       visible: 'true',
       comments: [],
       show: 'true',
+      srcImage: '',
     };
   },
   mounted() {
@@ -100,7 +103,8 @@ export default {
       method: 'get',
       url: 'https://api.unsplash.com/photos/random/?client_id=2XvEghmfJiiZDW9ybYbJyzhZaLNJh_h9MC8CIVoDZ1o',
     }).then((response) => {
-      this.photo = response.data;
+      console.log('rsp', response);
+      this.photo = response.data.urls.small;
     });
   },
   methods: {

@@ -7,85 +7,72 @@
         type="text"
         placeholder="Title search"
       />
-      <select v-model="filter">
-        <option value="0">Все категории</option>
-        <option
-          v-for="item in items"
-          :key="item.title"
-          :value="item.title"
-        >
-          {{ item.title }}
-        </option>
-      </select>
     </div>
-
-    <div id="sortsection">
-      Sort section
-      <button @click="sortDate">
-        <span v-if="UpCase">от А до Я</span>
-        <span v-else>от Я до А</span>
-      </button>
-      <button @click="type = 'date'">
-        <span v-if="UpDate"> Дата по возрастанию </span>
-        <span v-else> Дата по убыванию </span>
-      </button>
-    </div>
-    <div
-      v-for="item in sortedList1"
-      :key="item.id"
-    >
-      {{ item.title }}
-    </div>
-
     <div>
       <button id="link">
         <router-link to="/NewArticle"> Добавить запись</router-link>
       </button>
     </div>
+    <div id="sortsection">
+      Sort section
+      <button @click="setOrderType(0)">Сортировка по возрастанию</button>
+      <button @click="setOrderType(1)">Сортировка по убыванию</button>
+    </div>
     <div>
-      <ol class="list-group">
-        <li
-          v-for="item in searchM"
-          :key="item"
-        >
-          <a
-            href="/DiaryPage"
-            class="list-group-item"
-            >{{ item.title }}</a
-          >
-        </li>
-      </ol>
-      <ol class="list-group">
-        <li
-          v-for="item in filterM"
-          :key="item"
-        >
-          <a
-            href="/DiaryPage"
-            class="list-group-item"
-            >{{ item.title }}</a
-          >
-        </li>
-      </ol>
+      <li
+        v-for="item in filterItems"
+        :key="item.id"
+      >
+        №{{ item.id }}
+        <a href="/DiaryPage">
+          <!-- <a :href="`https://jsonplaceholder.typicode.com/posts/${item.id}`"> -->
+          {{ item.title }} Название статьи
+        </a>
+      </li>
     </div>
-    <div id="pagination">
-      <pagination
-        :total-pages="7"
-        :per-page="10"
-        :current-page="currentPage"
-        @pagechanged="onPageChange"
-      />
+
+    <div
+      id="pagination"
+      class="container"
+    >
+      <ul class="list-group">
+        <li
+          v-for="item in collection"
+          :key="item.id"
+          class="list-group-item"
+        >
+          {{ item.title }}
+        </li>
+      </ul>
+      <hr />
+      <div class="btn-toolbar">
+        <div class="btn-group">
+          <button
+            v-for="p in pagination.pages"
+            :key="p"
+            class="btn btn-primary"
+            @click.prevent="setPage(p)"
+          >
+            {{ p }}
+          </button>
+        </div>
+      </div>
+      <div>
+        Displaying from indexes {{ pagination.startIndex }} to
+        {{ pagination.endIndex }}
+      </div>
     </div>
+    <hr />
   </div>
 </template>
 <script lang="ts">
 import axios from 'axios';
-import Pagination from './Pagination.vue';
+/// import Pagination from './Pagination.vue';
 
 export default {
   name: 'ArticleList',
   components: {
-    Pagination,
+    /// Pagination,
   },
   data() {
     return {
@@ -97,66 +84,82 @@ export default {
       UpCase: true,
       UpDate: true,
       type: '',
+      orderType: 0,
+
+      perPage: 20,
+      pagination: {},
     };
   },
   computed: {
-    // sortedList1() {
-    //   const itemsCopy = [...this.items];
-    //   let sortedItems;
-    //   this.type = this.sortParam
+    filterItems() {
+      const { search, items, orderType } = this;
+      console.log({ orderType, items });
+      let filterArr = [...items];
 
-    //   switch (this.type) {
-    //     case 'case':
-    //       console.log('в кейсе')
+      filterArr = items.filter((item) => item.title.indexOf(search) !== -1);
 
-    //       sortedItems = itemsCopy.sort((a, b) =>
-    //         a.title.toLowerCase() > b.title.toLowerCase() ? 1 : -1);
-
-    //       sortedItems = itemsCopy.sort ((a, b) =>
-    //         a.title.toLowerCase() < b.title.toLowerCase() ? 1 : -1);
-
-    //       break;
-    //     case 'date':
-    //     console.log('в дате')
-    //     sortedItems = itemsCopy.sort((d1, d2) => (d1.id > d2.id ? 1 : -1));
-    //       break;
-    //     default:
-    //       console.log('default')
-    //       sortedItems = itemsCopy;
-    //   }
-    //   return itemsCopy;
-    // },
-    searchM() {
-      return this.items.filter((item) => item.title.includes(this.search));
+      if (orderType) {
+        console.log('in IF statement');
+        filterArr.sort((a, b) => {
+          if (orderType === 1) {
+            return b.id - a.id;
+          }
+          return a.id - b.id;
+        });
+      }
+      return filterArr;
     },
-    filterM() {
-      return this.items.filter((item) => item.title.includes(this.filter));
+
+    collection() {
+      return this.paginate(this.items);
     },
   },
-  created() {
-    axios({ method: 'get', url: 'https://jsonplaceholder.typicode.com/posts' })
+  async created() {
+    await axios({
+      method: 'get',
+      url: 'https://jsonplaceholder.typicode.com/posts',
+    })
       .then((response) => {
         this.items = response.data;
+        this.setPage(1);
       })
       .catch((error) => {
         console.log(error);
       });
   },
   methods: {
-    onPageChange(page) {
-      this.currentPage = page;
+    setOrderType(orderType) {
+      this.orderType = orderType;
     },
-    sortParamCase() {
-      this.UpCase = !this.UpCase;
+    // onPageChange(page) {
+    //   this.currentPage = page;
+    // },
+    setPage(p) {
+      console.log('setPage', this.items);
+      this.pagination = this.paginator(this.items.length, p);
     },
+    paginate(items) {
+      return items.slice(
+        items,
+        this.pagination.startIndex,
+        this.pagination.endIndex
+      );
+    },
+    paginator(totalItems, currentPage) {
+      console.log('paginator', totalItems, currentPage);
+      const startIndex = currentPage * this.perPage;
+      const endIndex = Math.min(startIndex + this.perPage, totalItems);
 
-    sortDate() {
-      this.items.sort((a, b) => {
-        if (this.UpCase) {
-          return b.title - a.title;
-        }
-        return a.title - b.title;
-      });
+      const test = {
+        currentPage,
+        startIndex,
+        endIndex,
+        pages: [...new Array(Math.ceil(totalItems / this.perPage)).keys()].map(
+          (i) => i + 1
+        ),
+      };
+      console.log('grh', test);
+      return test;
     },
   },
 };

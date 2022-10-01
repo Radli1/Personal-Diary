@@ -28,13 +28,6 @@
     "_name": "_0d97171c"
   },
   {
-    "name": "Pagination",
-    "path": "/Pagination",
-    "component": "/home/ud73/WebstormProjects/TrueMachine/Personal Diary/pages/Pagination.vue",
-    "chunkName": "pages/Pagination",
-    "_name": "_71445500"
-  },
-  {
     "name": "Search",
     "path": "/Search",
     "component": "/home/ud73/WebstormProjects/TrueMachine/Personal Diary/pages/Search.vue",
