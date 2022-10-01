@@ -165,4 +165,20 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+.button {
+  display: inline-block;
+  position: relative;
+  width: 120px;
+  height: 32px;
+  line-height: 32px;
+  border-radius: 2px;
+  font-size: 0.9em;
+  background-color: #fff;
+  color: #646464;
+  margin: 20px 10px;
+  transition: 0.2s;
+  transition-delay: 0.2s;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+}
+</style>
