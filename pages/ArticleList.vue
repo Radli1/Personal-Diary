@@ -18,19 +18,16 @@
       <button @click="setOrderType(0)">Сортировка по возрастанию</button>
       <button @click="setOrderType(1)">Сортировка по убыванию</button>
     </div>
-    <div>
-      <li
-        v-for="item in filterItems"
-        :key="item.id"
-      >
-        №{{ item.id }}
-        <a href="/DiaryPage">
-          <!-- <a :href="`https://jsonplaceholder.typicode.com/posts/${item.id}`"> -->
-          {{ item.title }} Название статьи
-        </a>
-      </li>
+    <div
+      v-for="item in filterItems"
+      :key="item.id"
+    >
+      №{{ item.id }}
+      <a href="/DiaryPage">
+        <!-- <a :href="`https://jsonplaceholder.typicode.com/posts/${item.id}`"> -->
+        {{ item.title }} Название статьи
+      </a>
     </div>
-
     <div
       id="pagination"
       class="container"
@@ -49,6 +46,7 @@
         <div class="btn-group">
           <button
             v-for="p in pagination.pages"
+            id="pagin"
             :key="p"
             class="btn btn-primary"
             @click.prevent="setPage(p)"
@@ -56,10 +54,6 @@
             {{ p }}
           </button>
         </div>
-      </div>
-      <div>
-        Displaying from indexes {{ pagination.startIndex }} to
-        {{ pagination.endIndex }}
       </div>
     </div>
     <hr />
@@ -166,19 +160,20 @@ export default {
 </script>
 
 <style>
-.button {
-  display: inline-block;
-  position: relative;
-  width: 120px;
-  height: 32px;
-  line-height: 32px;
-  border-radius: 2px;
-  font-size: 0.9em;
+#link {
+  border-radius: 6px;
+  font-size: large;
   background-color: #fff;
-  color: #646464;
   margin: 20px 10px;
   transition: 0.2s;
   transition-delay: 0.2s;
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+}
+#search-component {
+  border-radius: 6px;
+  font-size: large;
+}
+#pagin {
+  margin: 5px 2px;
 }
 </style>

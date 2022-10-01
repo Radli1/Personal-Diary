@@ -57,7 +57,7 @@
       type="submit"
       @click="onsubmit"
     >
-      Submit
+      Загрузить
     </button>
   </div>
 </template>

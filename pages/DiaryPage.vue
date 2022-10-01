@@ -130,4 +130,10 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+#comment {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+</style>

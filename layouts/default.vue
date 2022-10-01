@@ -1,7 +1,7 @@
 <template>
   <div>
     <nav
-      class="navbar has-shadow"
+      class="navbar"
       role="navigation"
       aria-label="main navigation"
     >
@@ -34,22 +34,23 @@
 </template>
 
 <style>
-.nav {
-  margin: 30 px 0;
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
 }
-
 .navbar-item {
-  color: crimson;
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-  background-color: #333;
+  background-color: green;
   float: left;
   display: block;
   color: white;
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
+  text-align: justify;
+  margin-left: 5px;
+  margin-right: 5px;
+  margin-bottom: 10px;
 }
 </style>
