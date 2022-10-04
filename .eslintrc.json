@@ -16,7 +16,11 @@
     "extends": [
         "airbnb-base",
         "plugin:vue/vue3-recommended",
-        "prettier"
+        "prettier",
+        "plugin:import/errors",
+        "plugin:import/warnings",
+        "plugin:import/typescript"
+
     ],
     "rules": {
         "vue/multi-word-component-names": "warn"

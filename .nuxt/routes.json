@@ -7,6 +7,13 @@
     "_name": "_708f80be"
   },
   {
+    "name": "ArticleList1",
+    "path": "/ArticleList1",
+    "component": "/home/ud73/WebstormProjects/TrueMachine/Personal Diary/pages/ArticleList1.vue",
+    "chunkName": "pages/ArticleList1",
+    "_name": "_bd2bae3a"
+  },
+  {
     "name": "DiaryPage",
     "path": "/DiaryPage",
     "component": "/home/ud73/WebstormProjects/TrueMachine/Personal Diary/pages/DiaryPage.vue",
@@ -14,25 +21,11 @@
     "_name": "_53cb007c"
   },
   {
-    "name": "ModalComponent",
-    "path": "/ModalComponent",
-    "component": "/home/ud73/WebstormProjects/TrueMachine/Personal Diary/pages/ModalComponent.vue",
-    "chunkName": "pages/ModalComponent",
-    "_name": "_bbf39e94"
-  },
-  {
     "name": "NewArticle",
     "path": "/NewArticle",
     "component": "/home/ud73/WebstormProjects/TrueMachine/Personal Diary/pages/NewArticle.vue",
     "chunkName": "pages/NewArticle",
     "_name": "_0d97171c"
-  },
-  {
-    "name": "Search",
-    "path": "/Search",
-    "component": "/home/ud73/WebstormProjects/TrueMachine/Personal Diary/pages/Search.vue",
-    "chunkName": "pages/Search",
-    "_name": "_4919a38e"
   },
   {
     "name": "index",

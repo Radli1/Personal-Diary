@@ -61,12 +61,11 @@
 </template>
 <script lang="ts">
 import axios from 'axios';
-/// import Pagination from './Pagination.vue';
+
 
 export default {
   name: 'ArticleList',
   components: {
-    /// Pagination,
   },
   data() {
     return {

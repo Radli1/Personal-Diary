@@ -13,6 +13,22 @@ export default {
     },
     env: {
         baseUrl: 'http://localhost:3000'
-        }
+        },
+    modules: [
+        '@pinia/nuxt',
+        // {
+        //     autoImports: [
+        //       // automatically imports `defineStore`
+        //       'defineStore', // import { defineStore } from 'pinia'
+        //       // automatically imports `defineStore` as `definePiniaStore`
+        //       ['defineStore', 'definePiniaStore'], // import { defineStore as definePiniaStore } from 'pinia'
+        //     ],
+        //   },
+    ],
+    buildModules: [
+    ['@nuxtjs/composition-api/module'],
+        ['@pinia/nuxt', { disableVuex: false }],
+      ]
+
     }
     

@@ -5,10 +5,9 @@ import { interopDefault } from './utils'
 import scrollBehavior from './router.scrollBehavior.js'
 
 const _708f80be = () => interopDefault(import('../pages/ArticleList.vue' /* webpackChunkName: "pages/ArticleList" */))
+const _bd2bae3a = () => interopDefault(import('../pages/ArticleList1.vue' /* webpackChunkName: "pages/ArticleList1" */))
 const _53cb007c = () => interopDefault(import('../pages/DiaryPage.vue' /* webpackChunkName: "pages/DiaryPage" */))
-const _bbf39e94 = () => interopDefault(import('../pages/ModalComponent.vue' /* webpackChunkName: "pages/ModalComponent" */))
 const _0d97171c = () => interopDefault(import('../pages/NewArticle.vue' /* webpackChunkName: "pages/NewArticle" */))
-const _4919a38e = () => interopDefault(import('../pages/Search.vue' /* webpackChunkName: "pages/Search" */))
 const _f5417d08 = () => interopDefault(import('../pages/index.vue' /* webpackChunkName: "pages/index" */))
 
 const emptyFn = () => {}
@@ -27,21 +26,17 @@ export const routerOptions = {
     component: _708f80be,
     name: "ArticleList"
   }, {
+    path: "/ArticleList1",
+    component: _bd2bae3a,
+    name: "ArticleList1"
+  }, {
     path: "/DiaryPage",
     component: _53cb007c,
     name: "DiaryPage"
   }, {
-    path: "/ModalComponent",
-    component: _bbf39e94,
-    name: "ModalComponent"
-  }, {
     path: "/NewArticle",
     component: _0d97171c,
     name: "NewArticle"
-  }, {
-    path: "/Search",
-    component: _4919a38e,
-    name: "Search"
   }, {
     path: "/",
     component: _f5417d08,
