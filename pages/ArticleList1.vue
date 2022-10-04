@@ -14,5 +14,3 @@
   const { paginatedArray } = storeToRefs(useTitleStore())
   
   defineProps(['paginatedArray'])
-  
-
