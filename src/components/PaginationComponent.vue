@@ -16,7 +16,7 @@
 </template>
 <script>
 import { ref, computed } from "@nuxtjs/composition-api";
-import  useTitleStore  from "../store/useTitlesApi";
+import  useTitleStore  from "./store/useTitlesApi";
 import { storeToRefs } from "pinia";
 const { paginatedArray } = storeToRefs(useTitleStore())
 
