@@ -1,19 +1,22 @@
 <template>
   <div>
-   <div class="pagination-row">
+    <div v-for="index in paginatedArray" :key="paginatedArray.id">{{paginatedArray.title}}
+    </div> 
+
+    <div class="pagination-row">
     <button class="pagination-button"> Previous</button>
-    <span v-for="index in paginatedArray" :key="index">
+    
+    <!-- <span v-for="index in paginatedArray" :key="index">
       <button class="pagination-button">{{index+1}}</button>
-    </span>
+    </span>-->
+    
     <button class="pagination-button">Next</button>
-   </div>
-   
+   </div> 
   </div>
 </template>
-
 <script>
 import { ref, computed } from "@nuxtjs/composition-api";
-import { useTitlesApi, useTitleStore } from "../../store/titleApi";
+import { useTitleStore } from "../../store/titleApi";
 import { storeToRefs } from "pinia";
 const { paginatedArray } = storeToRefs(useTitleStore())
 
@@ -31,7 +34,7 @@ export default {
       pageSize: 10,
       total: computed(() => paginatedArray.value.length),
     });
-
+    console.log(paginatedArray)
     return {
       currentPage,
       lastPage,
@@ -40,7 +43,6 @@ export default {
     };
   }
 }
-
 </script>
 <style>
   .pagination-button {
