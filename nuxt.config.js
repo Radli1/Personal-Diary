@@ -27,7 +27,7 @@ export default {
     ],
     buildModules: [
     ['@nuxtjs/composition-api/module'],
-        ['@pinia/nuxt', { disableVuex: false }],
+        ['@pinia/nuxt', { disableVuex: true }],
       ]
 
     }
