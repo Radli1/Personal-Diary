@@ -10,7 +10,18 @@
     </div>
   </div>
 </template>
+<script>
+import PaginationComponent from '../src/components/PaginationComponent.vue';
+import SortComponent from '../src/components/SortComponent.vue';
 
+export default {
+  components: {
+    PaginationComponent,
+    SortComponent,
+  },
+};
+</script>
+import Pahin
 <!-- <script setup>
   //import { ref, computed, reactive } from "@nuxtjs/composition-api";
   import  PaginationComponent from './src/components';
